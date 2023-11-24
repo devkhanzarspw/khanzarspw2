@@ -3,12 +3,11 @@
  * and open the template in the editor.
  */
 
-/*
+ /*
  * DlgPenyakit.java
  *
  * Created on May 23, 2010, 12:57:16 AM
  */
-
 package khanzaantrianpoli;
 
 import fungsi.WarnaTable;
@@ -35,72 +34,82 @@ import javax.swing.table.TableColumn;
  * @author dosen
  */
 public final class DlgCariDokter extends javax.swing.JDialog {
+
     private final DefaultTableModel tabMode;
-    private sekuel Sequel=new sekuel();
-    private validasi Valid=new validasi();
-    private Connection koneksi=koneksiDB.condb();
+    private sekuel Sequel = new sekuel();
+    private validasi Valid = new validasi();
+    private Connection koneksi = koneksiDB.condb();
     private PreparedStatement ps;
     private ResultSet rs;
-    /** Creates new form DlgPenyakit
+
+    /**
+     * Creates new form DlgPenyakit
+     *
      * @param parent
-     * @param modal */
+     * @param modal
+     */
     public DlgCariDokter(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setLocation(10,2);
-        setSize(656,250);
+        this.setLocation(10, 2);
+        setSize(656, 250);
 
-        Object[] row={"Kode Dokter","Nama Dokter","J.K.","Tmp.Lahir","Tgl.Lahir","G.D.","Agama","Alamat Tinggal","No.HP/Telp","Stts.Nikah","Spesialis","Alumni","No.Ijin Praktek"};
-        tabMode=new DefaultTableModel(null,row){
-              @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
+        Object[] row = {"Kode Dokter", "Nama Dokter", "J.K.", "Tmp.Lahir", "Tgl.Lahir", "G.D.", "Agama", "Alamat Tinggal", "No.HP/Telp", "Stts.Nikah", "Spesialis", "Alumni", "No.Ijin Praktek"};
+        tabMode = new DefaultTableModel(null, row) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
         };
         tbKamar.setModel(tabMode);
         //tbPenyakit.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbPenyakit.getBackground()));
-        tbKamar.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbKamar.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbKamar.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (int i = 0; i < 13; i++) {
             TableColumn column = tbKamar.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(100);
-            }else if(i==1){
+            } else if (i == 1) {
                 column.setPreferredWidth(200);
-            }else if(i==2){
+            } else if (i == 2) {
                 column.setPreferredWidth(40);
-            }else if(i==3){
+            } else if (i == 3) {
                 column.setPreferredWidth(100);
-            }else if(i==4){
+            } else if (i == 4) {
                 column.setPreferredWidth(100);
-            }else if(i==5){
+            } else if (i == 5) {
                 column.setPreferredWidth(40);
-            }else if(i==6){
+            } else if (i == 6) {
                 column.setPreferredWidth(150);
-            }else if(i==7){
+            } else if (i == 7) {
                 column.setPreferredWidth(150);
-            }else if(i==8){
+            } else if (i == 8) {
                 column.setPreferredWidth(100);
-            }else if(i==9){
+            } else if (i == 9) {
                 column.setPreferredWidth(100);
-            }else if(i==10){
+            } else if (i == 10) {
                 column.setPreferredWidth(150);
-            }else if(i==11){
+            } else if (i == 11) {
                 column.setPreferredWidth(200);
-            }else if(i==12){
+            } else if (i == 12) {
                 column.setPreferredWidth(100);
             }
         }
         tbKamar.setDefaultRenderer(Object.class, new WarnaTable());
-        TCari.setDocument(new batasInput((byte)100).getKata(TCari));
-        
-        TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
+        TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
+
+        TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 tampil();
             }
+
             @Override
             public void removeUpdate(DocumentEvent e) {
                 tampil();
             }
+
             @Override
             public void changedUpdate(DocumentEvent e) {
                 tampil();
@@ -108,34 +117,32 @@ public final class DlgCariDokter extends javax.swing.JDialog {
 
         });
         try {
-            ps=koneksi.prepareStatement("select kd_dokter,nm_dokter,jk,tmp_lahir, "+
-                "tgl_lahir,gol_drh,agama,almt_tgl,no_telp, "+
-                "stts_nikah,nm_sps,alumni,no_ijn_praktek "+
-                "from dokter inner join spesialis on dokter.kd_sps=spesialis.kd_sps "+
-                "where kd_dokter like ? or "+
-                " nm_dokter like ? or "+
-                " jk like ? or "+
-                " tmp_lahir like ? or "+
-                " tgl_lahir like ? or "+
-                " gol_drh like ? or "+
-                " agama like ? or "+
-                " almt_tgl like ? or "+
-                " no_telp like ? or "+
-                " stts_nikah like ? or "+
-                " nm_sps like ? or "+
-                " alumni like ? or "+
-                " no_ijn_praktek like ? order by nm_dokter");
+            ps = koneksi.prepareStatement("select kd_dokter,nm_dokter,jk,tmp_lahir, "
+                    + "tgl_lahir,gol_drh,agama,almt_tgl,no_telp, "
+                    + "stts_nikah,nm_sps,alumni,no_ijn_praktek "
+                    + "from dokter inner join spesialis on dokter.kd_sps=spesialis.kd_sps "
+                    + "where kd_dokter like ? or "
+                    + " nm_dokter like ? or "
+                    + " jk like ? or "
+                    + " tmp_lahir like ? or "
+                    + " tgl_lahir like ? or "
+                    + " gol_drh like ? or "
+                    + " agama like ? or "
+                    + " almt_tgl like ? or "
+                    + " no_telp like ? or "
+                    + " stts_nikah like ? or "
+                    + " nm_sps like ? or "
+                    + " alumni like ? or "
+                    + " no_ijn_praktek like ? order by nm_dokter");
         } catch (Exception e) {
             System.out.println(e);
         }
     }
-    
 
-
-    /** This method is called from within the constructor to
-     * initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is
-     * always regenerated by the Form Editor.
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -325,13 +332,13 @@ public final class DlgCariDokter extends javax.swing.JDialog {
 
 
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             BtnCariActionPerformed(null);
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
             BtnCari.requestFocus();
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP) {
             BtnKeluar.requestFocus();
-        }else if(evt.getKeyCode()==KeyEvent.VK_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             tbKamar.requestFocus();
         }
 }//GEN-LAST:event_TCariKeyPressed
@@ -341,9 +348,9 @@ public final class DlgCariDokter extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnCariActionPerformed(null);
-        }else{
+        } else {
             Valid.pindah(evt, TCari, BtnAll);
         }
 }//GEN-LAST:event_BtnCariKeyPressed
@@ -354,26 +361,26 @@ public final class DlgCariDokter extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnAllActionPerformed
 
     private void BtnAllKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAllKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnAllActionPerformed(null);
-        }else{
+        } else {
             Valid.pindah(evt, BtnCari, TCari);
         }
 }//GEN-LAST:event_BtnAllKeyPressed
 
     private void tbKamarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbKamarMouseClicked
-        if(tabMode.getRowCount()!=0){
-            if(evt.getClickCount()==2){
+        if (tabMode.getRowCount() != 0) {
+            if (evt.getClickCount() == 2) {
                 dispose();
             }
         }
 }//GEN-LAST:event_tbKamarMouseClicked
 
     private void tbKamarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbKamarKeyPressed
-        if(tabMode.getRowCount()!=0){
-            if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (tabMode.getRowCount() != 0) {
+            if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
                 dispose();
-            }else if(evt.getKeyCode()==KeyEvent.VK_SHIFT){
+            } else if (evt.getKeyCode() == KeyEvent.VK_SHIFT) {
                 TCari.setText("");
                 TCari.requestFocus();
             }
@@ -401,8 +408,8 @@ public final class DlgCariDokter extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowOpened
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
             DlgCariDokter dialog = new DlgCariDokter(new javax.swing.JFrame(), true);
@@ -436,51 +443,50 @@ public final class DlgCariDokter extends javax.swing.JDialog {
 
     private void tampil() {
         Valid.tabelKosong(tabMode);
-        try{
-            ps.setString(1,"%"+TCari.getText().trim()+"%");
-            ps.setString(2,"%"+TCari.getText().trim()+"%");
-            ps.setString(3,"%"+TCari.getText().trim()+"%");
-            ps.setString(4,"%"+TCari.getText().trim()+"%");
-            ps.setString(5,"%"+TCari.getText().trim()+"%");
-            ps.setString(6,"%"+TCari.getText().trim()+"%");
-            ps.setString(7,"%"+TCari.getText().trim()+"%");
-            ps.setString(8,"%"+TCari.getText().trim()+"%");
-            ps.setString(9,"%"+TCari.getText().trim()+"%");
-            ps.setString(10,"%"+TCari.getText().trim()+"%");
-            ps.setString(11,"%"+TCari.getText().trim()+"%");
-            ps.setString(12,"%"+TCari.getText().trim()+"%");
-            ps.setString(13,"%"+TCari.getText().trim()+"%");
-            rs=ps.executeQuery();
-            while(rs.next()){
-                String[] data={rs.getString(1),
-                               rs.getString(2),
-                               rs.getString(3),
-                               rs.getString(4),
-                               rs.getString(5),
-                               rs.getString(6),
-                               rs.getString(7),
-                               rs.getString(8),
-                               rs.getString(9),
-                               rs.getString(10),
-                               rs.getString(11),
-                               rs.getString(12),
-                               rs.getString(13)};
+        try {
+            ps.setString(1, "%" + TCari.getText().trim() + "%");
+            ps.setString(2, "%" + TCari.getText().trim() + "%");
+            ps.setString(3, "%" + TCari.getText().trim() + "%");
+            ps.setString(4, "%" + TCari.getText().trim() + "%");
+            ps.setString(5, "%" + TCari.getText().trim() + "%");
+            ps.setString(6, "%" + TCari.getText().trim() + "%");
+            ps.setString(7, "%" + TCari.getText().trim() + "%");
+            ps.setString(8, "%" + TCari.getText().trim() + "%");
+            ps.setString(9, "%" + TCari.getText().trim() + "%");
+            ps.setString(10, "%" + TCari.getText().trim() + "%");
+            ps.setString(11, "%" + TCari.getText().trim() + "%");
+            ps.setString(12, "%" + TCari.getText().trim() + "%");
+            ps.setString(13, "%" + TCari.getText().trim() + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String[] data = {rs.getString(1),
+                    rs.getString(2),
+                    rs.getString(3),
+                    rs.getString(4),
+                    rs.getString(5),
+                    rs.getString(6),
+                    rs.getString(7),
+                    rs.getString(8),
+                    rs.getString(9),
+                    rs.getString(10),
+                    rs.getString(11),
+                    rs.getString(12),
+                    rs.getString(13)};
                 tabMode.addRow(data);
             }
-        }catch(SQLException e){
-            System.out.println("Error : "+e);
+        } catch (SQLException e) {
+            System.out.println("Error : " + e);
         }
-        int b=tabMode.getRowCount();
-        LCount.setText(""+b);
+        int b = tabMode.getRowCount();
+        LCount.setText("" + b);
     }
 
-    public void emptTeks() { 
+    public void emptTeks() {
         TCari.requestFocus();
     }
 
-    public JTable getTable(){
+    public JTable getTable() {
         return tbKamar;
     }
-    
-    
+
 }

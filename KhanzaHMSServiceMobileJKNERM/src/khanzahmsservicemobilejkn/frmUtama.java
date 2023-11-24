@@ -238,8 +238,8 @@ public class frmUtama extends javax.swing.JFrame {
 
                 if (detik.equals("01")) {
                     date = new Date();
-                    Tanggal1.setText(tanggalFormat.format(date));
-                    Tanggal2.setText(tanggalFormat.format(date));
+//                    Tanggal1.setText(tanggalFormat.format(date));
+//                    Tanggal2.setText(tanggalFormat.format(date));
                     day2 = tanggalFormat2.format(date);
                     switch (day2) {
                         case "Sun":
@@ -255,7 +255,7 @@ public class frmUtama extends javax.swing.JFrame {
                             hari = "RABU";
                             break;
                         case "Thu":
-                            hari = "KAMIS";
+                            hari = "RABU";
                             break;
                         case "Fri":
                             hari = "JUMAT";
@@ -277,7 +277,7 @@ public class frmUtama extends javax.swing.JFrame {
                 //    Tanggal1.setText(tanggalFormat.format(date));
                 //    Tanggal2.setText(tanggalFormat.format(date));
                 //}
-                if (detik.equals("01") && ((nilai_menit % 10) == 0)) {
+                if (detik.equals("01") && ((nilai_menit % 16) == 0)) {
                     //hari = "SELASA";
                     try {
                         koneksi = koneksiDB.condb();

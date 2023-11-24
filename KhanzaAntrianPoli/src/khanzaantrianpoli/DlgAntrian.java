@@ -3,12 +3,11 @@
  * and open the template in the editor.
  */
 
-/*
+ /*
  * DlgBiling.java
  *
  * Created on 07 Jun 10, 19:07:06
  */
-
 package khanzaantrianpoli;
 
 import fungsi.BackgroundMusic;
@@ -30,122 +29,134 @@ import java.sql.Connection;
  *
  * @author perpustakaan
  */
-public class DlgAntrian extends javax.swing.JDialog implements ActionListener{    
-    private Connection koneksi=koneksiDB.condb();
-    private final Dimension screen=Toolkit.getDefaultToolkit().getScreenSize();   
-    /** Creates new form DlgBiling
+public class DlgAntrian extends javax.swing.JDialog implements ActionListener {
+
+    private Connection koneksi = koneksiDB.condb();
+    private final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+
+    /**
+     * Creates new form DlgBiling
+     *
      * @param parent
-     * @param modal */
+     * @param modal
+     */
     public DlgAntrian(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setIconImage(new ImageIcon(super.getClass().getResource("/picture/addressbook-edit24.png")).getImage());
-        
-        this.setSize(screen.width,screen.height);
-        
-        Object[] row={"No.Reg",
+
+        this.setSize(screen.width, screen.height);
+
+        Object[] row = {"No.Reg",
             "Nomer RM",
             "Pasien",
             "No.Rawat",
             "Dokter Dituju",
             "Jam Daftar"};
-        tabMode1=new DefaultTableModel(null,row){
-              @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
+        tabMode1 = new DefaultTableModel(null, row) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
         };
         Table1.setModel(tabMode1);
 
-        Table1.setPreferredScrollableViewportSize(new Dimension(800,800));
+        Table1.setPreferredScrollableViewportSize(new Dimension(800, 800));
         Table1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (int i = 0; i < 6; i++) {
             TableColumn column = Table1.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(60);
-            }else if(i==1){
+            } else if (i == 1) {
                 column.setPreferredWidth(100);
-            }else if(i==2){
+            } else if (i == 2) {
                 column.setPreferredWidth(200);
-            }else if(i==3){
-                column.setPreferredWidth(100);   
-            }else if(i==4){
+            } else if (i == 3) {
+                column.setPreferredWidth(100);
+            } else if (i == 4) {
                 column.setPreferredWidth(200);
-            }else if(i==5){
+            } else if (i == 5) {
                 column.setPreferredWidth(100);
             }
         }
         Table1.setDefaultRenderer(Object.class, new WarnaTable());
-        
-        tabMode2=new DefaultTableModel(null,row){
-              @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
+
+        tabMode2 = new DefaultTableModel(null, row) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
         };
         Table2.setModel(tabMode2);
 
-        Table2.setPreferredScrollableViewportSize(new Dimension(800,800));
+        Table2.setPreferredScrollableViewportSize(new Dimension(800, 800));
         Table2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (int i = 0; i < 6; i++) {
             TableColumn column = Table2.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(60);
-            }else if(i==1){
+            } else if (i == 1) {
                 column.setPreferredWidth(100);
-            }else if(i==2){
+            } else if (i == 2) {
                 column.setPreferredWidth(200);
-            }else if(i==3){
-                column.setPreferredWidth(100);   
-            }else if(i==4){
+            } else if (i == 3) {
+                column.setPreferredWidth(100);
+            } else if (i == 4) {
                 column.setPreferredWidth(200);
-            }else if(i==5){
+            } else if (i == 5) {
                 column.setPreferredWidth(100);
             }
         }
         Table2.setDefaultRenderer(Object.class, new WarnaTable());
-        
-        tabMode3=new DefaultTableModel(null,row){
-              @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
+
+        tabMode3 = new DefaultTableModel(null, row) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
         };
         Table3.setModel(tabMode3);
 
-        Table3.setPreferredScrollableViewportSize(new Dimension(800,800));
+        Table3.setPreferredScrollableViewportSize(new Dimension(800, 800));
         Table3.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (int i = 0; i < 6; i++) {
             TableColumn column = Table3.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(60);
-            }else if(i==1){
+            } else if (i == 1) {
                 column.setPreferredWidth(100);
-            }else if(i==2){
+            } else if (i == 2) {
                 column.setPreferredWidth(200);
-            }else if(i==3){
-                column.setPreferredWidth(100);   
-            }else if(i==4){
+            } else if (i == 3) {
+                column.setPreferredWidth(100);
+            } else if (i == 4) {
                 column.setPreferredWidth(200);
-            }else if(i==5){
+            } else if (i == 5) {
                 column.setPreferredWidth(100);
             }
         }
         Table3.setDefaultRenderer(Object.class, new WarnaTable());
-        
-        
+
         javax.swing.Timer timer = new javax.swing.Timer(100, this);
         timer.start();
     }
-    
+
     private final DefaultTableModel tabMode1;
     private final DefaultTableModel tabMode2;
     private final DefaultTableModel tabMode3;
-    private DlgCariDokter dokter=new DlgCariDokter(null,false);
-    private sekuel Sequel=new sekuel();
-    private validasi Valid=new validasi();
-    private int pilihan=0;
-    private DlgCariPoli poli=new DlgCariPoli(null,false);
+    private DlgCariDokter dokter = new DlgCariDokter(null, false);
+    private sekuel Sequel = new sekuel();
+    private validasi Valid = new validasi();
+    private int pilihan = 0;
+    private DlgCariPoli poli = new DlgCariPoli(null, false);
 
-
-    /** This method is called from within the constructor to
-     * initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is
-     * always regenerated by the Form Editor.
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -190,7 +201,6 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
         panelisi1 = new widget.panelisi();
         BtnDisplay = new widget.Button();
         BtnKeluar = new widget.Button();
-        jCheckBox1 = new javax.swing.JCheckBox();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         panelisi2 = new widget.panelisi();
@@ -601,10 +611,6 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
         });
         panelisi1.add(BtnKeluar);
 
-        jCheckBox1.setText("jCheckBox1");
-        jCheckBox1.setName("jCheckBox1"); // NOI18N
-        panelisi1.add(jCheckBox1);
-
         internalFrame1.add(panelisi1, java.awt.BorderLayout.PAGE_END);
 
         jPanel1.setName("jPanel1"); // NOI18N
@@ -958,118 +964,118 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
     }// </editor-fold>//GEN-END:initComponents
 
 private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        System.exit(0);
+    System.exit(0);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
 private void BtnSeek2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSeek2ActionPerformed
-        pilihan=1;
-        poli.emptTeks();
-        poli.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-        poli.setLocationRelativeTo(internalFrame1);
-        poli.setAlwaysOnTop(false);
-        poli.setVisible(true);
+    pilihan = 1;
+    poli.emptTeks();
+    poli.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
+    poli.setLocationRelativeTo(internalFrame1);
+    poli.setAlwaysOnTop(false);
+    poli.setVisible(true);
 }//GEN-LAST:event_BtnSeek2ActionPerformed
 
 private void BtnSeek3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSeek3ActionPerformed
-       pilihan=2;
-        poli.emptTeks();
-        poli.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-        poli.setLocationRelativeTo(internalFrame1);
-        poli.setAlwaysOnTop(false);
-        poli.setVisible(true);
+    pilihan = 2;
+    poli.emptTeks();
+    poli.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
+    poli.setLocationRelativeTo(internalFrame1);
+    poli.setAlwaysOnTop(false);
+    poli.setVisible(true);
 }//GEN-LAST:event_BtnSeek3ActionPerformed
 
 private void BtnSeek4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSeek4ActionPerformed
-        pilihan=3;
-        poli.emptTeks();
+    pilihan = 3;
+    poli.emptTeks();
 
-        poli.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-        poli.setLocationRelativeTo(internalFrame1);
-        poli.setAlwaysOnTop(false);
-        poli.setVisible(true);
+    poli.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
+    poli.setLocationRelativeTo(internalFrame1);
+    poli.setAlwaysOnTop(false);
+    poli.setVisible(true);
 }//GEN-LAST:event_BtnSeek4ActionPerformed
 
 private void BtnDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDisplayActionPerformed
-       Dimension screen=Toolkit.getDefaultToolkit().getScreenSize();
-       DlgDisplay.setSize(screen.width,screen.height);
-       if(!Unit1.getText().equals("")){
-           form1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 200, 100)), Unit1.getText()+" :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 0, 36), new java.awt.Color(100, 150, 100)));
-       }
-       
-       if(!Unit2.getText().equals("")){
-           form2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 200, 100)), Unit2.getText()+" :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 0, 36), new java.awt.Color(100, 150, 100)));
-       }
-       
-       if(!Unit3.getText().equals("")){
-           form3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 200, 100)), Unit3.getText()+" :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 0, 36), new java.awt.Color(100, 150, 100)));
-       }
-       isTampil();
-       DlgDisplay.setIconImage(new ImageIcon(super.getClass().getResource("/picture/addressbook-edit24.png")).getImage());
-       DlgDisplay.setAlwaysOnTop(false);
-       DlgDisplay.setVisible(true);
+    Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+    DlgDisplay.setSize(screen.width, screen.height);
+    if (!Unit1.getText().equals("")) {
+        form1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 200, 100)), Unit1.getText() + " :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 0, 36), new java.awt.Color(100, 150, 100)));
+    }
+
+    if (!Unit2.getText().equals("")) {
+        form2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 200, 100)), Unit2.getText() + " :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 0, 36), new java.awt.Color(100, 150, 100)));
+    }
+
+    if (!Unit3.getText().equals("")) {
+        form3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 200, 100)), Unit3.getText() + " :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 0, 36), new java.awt.Color(100, 150, 100)));
+    }
+    isTampil();
+    DlgDisplay.setIconImage(new ImageIcon(super.getClass().getResource("/picture/addressbook-edit24.png")).getImage());
+    DlgDisplay.setAlwaysOnTop(false);
+    DlgDisplay.setVisible(true);
 }//GEN-LAST:event_BtnDisplayActionPerformed
 
 private void ppAntri1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppAntri1ActionPerformed
-        
-        if(tabMode1.getRowCount()!=0){
-            try {
-                BackgroundMusic bm = new BackgroundMusic("./suara/nomor-urut.mp3");
-                bm.start();
-                Thread.sleep(2000);
-                bm.stop();
-            } catch (InterruptedException ex) {
-                System.out.println(ex);
-            } 
-            panggil(Integer.parseInt(tabMode1.getValueAt(0,0).toString()));
-                labelantri1.setText(tabMode1.getValueAt(0,0).toString());
-                labelpas1.setText(tabMode1.getValueAt(0,2).toString());
-                norawat1.setText(tabMode1.getValueAt(0,3).toString());
-                labeldokter1.setText(tabMode1.getValueAt(0,4).toString());
-                Sequel.queryu("update reg_periksa set stts='Sudah' where no_rawat='"+tabMode1.getValueAt(0,3).toString()+"'");
-                tampil1();
+
+    if (tabMode1.getRowCount() != 0) {
+        try {
+            BackgroundMusic bm = new BackgroundMusic("./suara/nomor-urut.mp3");
+            bm.start();
+            Thread.sleep(2000);
+            bm.stop();
+        } catch (InterruptedException ex) {
+            System.out.println(ex);
         }
+        panggil(Integer.parseInt(tabMode1.getValueAt(0, 0).toString()));
+        labelantri1.setText(tabMode1.getValueAt(0, 0).toString());
+        labelpas1.setText(tabMode1.getValueAt(0, 2).toString());
+        norawat1.setText(tabMode1.getValueAt(0, 3).toString());
+        labeldokter1.setText(tabMode1.getValueAt(0, 4).toString());
+        Sequel.queryu("update reg_periksa set stts='Sudah' where no_rawat='" + tabMode1.getValueAt(0, 3).toString() + "'");
+        tampil1();
+    }
 }//GEN-LAST:event_ppAntri1ActionPerformed
 
 private void ppAntri2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppAntri2ActionPerformed
-       
-       if(tabMode2.getRowCount()!=0){
-           try {
-                BackgroundMusic bm = new BackgroundMusic("./suara/nomor-urut.mp3");
-                bm.start();
-                Thread.sleep(2000);
-                bm.stop();
-            } catch (InterruptedException ex) {
-                System.out.println(ex);
-            } 
-            panggil(Integer.parseInt(tabMode2.getValueAt(0,0).toString()));
-                labelantri2.setText(tabMode2.getValueAt(0,0).toString());
-                labelpas2.setText(tabMode2.getValueAt(0,2).toString());
-                norawat2.setText(tabMode2.getValueAt(0,3).toString());
-                labeldokter2.setText(tabMode2.getValueAt(0,4).toString());
-                Sequel.queryu("update reg_periksa set stts='Sudah' where no_rawat='"+tabMode2.getValueAt(0,3).toString()+"'");
-                tampil2();
+
+    if (tabMode2.getRowCount() != 0) {
+        try {
+            BackgroundMusic bm = new BackgroundMusic("./suara/nomor-urut.mp3");
+            bm.start();
+            Thread.sleep(2000);
+            bm.stop();
+        } catch (InterruptedException ex) {
+            System.out.println(ex);
         }
+        panggil(Integer.parseInt(tabMode2.getValueAt(0, 0).toString()));
+        labelantri2.setText(tabMode2.getValueAt(0, 0).toString());
+        labelpas2.setText(tabMode2.getValueAt(0, 2).toString());
+        norawat2.setText(tabMode2.getValueAt(0, 3).toString());
+        labeldokter2.setText(tabMode2.getValueAt(0, 4).toString());
+        Sequel.queryu("update reg_periksa set stts='Sudah' where no_rawat='" + tabMode2.getValueAt(0, 3).toString() + "'");
+        tampil2();
+    }
 }//GEN-LAST:event_ppAntri2ActionPerformed
 
 private void ppAntri3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppAntri3ActionPerformed
-       
-       if(tabMode3.getRowCount()!=0){
-           try {
-                BackgroundMusic bm = new BackgroundMusic("./suara/nomor-urut.mp3");
-                bm.start();
-                Thread.sleep(2000);
-                bm.stop();
-            } catch (InterruptedException ex) {
-                System.out.println(ex);
-            } 
-            panggil(Integer.parseInt(tabMode3.getValueAt(0,0).toString()));
-                labelantri3.setText(tabMode3.getValueAt(0,0).toString());
-                labelpas3.setText(tabMode3.getValueAt(0,2).toString());
-                norawat3.setText(tabMode3.getValueAt(0,3).toString());
-                labeldokter3.setText(tabMode3.getValueAt(0,4).toString());
-                Sequel.queryu("update reg_periksa set stts='Sudah' where no_rawat='"+tabMode3.getValueAt(1,3).toString()+"'");
-                tampil3();
+
+    if (tabMode3.getRowCount() != 0) {
+        try {
+            BackgroundMusic bm = new BackgroundMusic("./suara/nomor-urut.mp3");
+            bm.start();
+            Thread.sleep(2000);
+            bm.stop();
+        } catch (InterruptedException ex) {
+            System.out.println(ex);
         }
+        panggil(Integer.parseInt(tabMode3.getValueAt(0, 0).toString()));
+        labelantri3.setText(tabMode3.getValueAt(0, 0).toString());
+        labelpas3.setText(tabMode3.getValueAt(0, 2).toString());
+        norawat3.setText(tabMode3.getValueAt(0, 3).toString());
+        labeldokter3.setText(tabMode3.getValueAt(0, 4).toString());
+        Sequel.queryu("update reg_periksa set stts='Sudah' where no_rawat='" + tabMode3.getValueAt(1, 3).toString() + "'");
+        tampil3();
+    }
 }//GEN-LAST:event_ppAntri3ActionPerformed
 
 private void ppCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppCloseActionPerformed
@@ -1078,112 +1084,112 @@ private void ppCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 }//GEN-LAST:event_ppCloseActionPerformed
 
 private void ppUndo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppUndo1ActionPerformed
-       if(tabMode1.getRowCount()>=5){                
-                Sequel.queryu("update reg_periksa set stts='Belum',jam_reg='"+tabMode1.getValueAt(4,5).toString()+"' where no_rawat='"+norawat1.getText()+"'");
-                labelantri1.setText(tabMode1.getValueAt(0,0).toString());
-                labelpas1.setText(tabMode1.getValueAt(0,2).toString());
-                norawat1.setText(tabMode1.getValueAt(0,3).toString());
-                labeldokter1.setText(tabMode1.getValueAt(0,4).toString());
-                Sequel.queryu("update reg_periksa set stts='Sudah' where no_rawat='"+tabMode1.getValueAt(0,3).toString()+"'");
-                tampil1();
-        }else if(tabMode1.getRowCount()<=5){  
-                Sequel.queryu("update reg_periksa set stts='Belum',jam_reg=current_time() where no_rawat='"+norawat1.getText()+"'");
-                labelantri1.setText(tabMode1.getValueAt(0,0).toString());
-                labelpas1.setText(tabMode1.getValueAt(0,2).toString());                
-                norawat1.setText(tabMode1.getValueAt(0,3).toString());
-                labeldokter1.setText(tabMode1.getValueAt(0,4).toString());
-                Sequel.queryu("update reg_periksa set stts='Sudah' where no_rawat='"+tabMode1.getValueAt(0,3).toString()+"'");
-                tampil1();
-        }
+    if (tabMode1.getRowCount() >= 5) {
+        Sequel.queryu("update reg_periksa set stts='Belum',jam_reg='" + tabMode1.getValueAt(4, 5).toString() + "' where no_rawat='" + norawat1.getText() + "'");
+        labelantri1.setText(tabMode1.getValueAt(0, 0).toString());
+        labelpas1.setText(tabMode1.getValueAt(0, 2).toString());
+        norawat1.setText(tabMode1.getValueAt(0, 3).toString());
+        labeldokter1.setText(tabMode1.getValueAt(0, 4).toString());
+        Sequel.queryu("update reg_periksa set stts='Sudah' where no_rawat='" + tabMode1.getValueAt(0, 3).toString() + "'");
+        tampil1();
+    } else if (tabMode1.getRowCount() <= 5) {
+        Sequel.queryu("update reg_periksa set stts='Belum',jam_reg=current_time() where no_rawat='" + norawat1.getText() + "'");
+        labelantri1.setText(tabMode1.getValueAt(0, 0).toString());
+        labelpas1.setText(tabMode1.getValueAt(0, 2).toString());
+        norawat1.setText(tabMode1.getValueAt(0, 3).toString());
+        labeldokter1.setText(tabMode1.getValueAt(0, 4).toString());
+        Sequel.queryu("update reg_periksa set stts='Sudah' where no_rawat='" + tabMode1.getValueAt(0, 3).toString() + "'");
+        tampil1();
+    }
 }//GEN-LAST:event_ppUndo1ActionPerformed
 
 private void ppUndo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppUndo2ActionPerformed
-       if(tabMode2.getRowCount()>=5){                
-                Sequel.queryu("update reg_periksa set stts='Belum',jam_reg='"+tabMode2.getValueAt(4,5).toString()+"' where no_rawat='"+norawat2.getText()+"'");
-                labelantri2.setText(tabMode2.getValueAt(0,0).toString());
-                labelpas2.setText(tabMode2.getValueAt(0,2).toString());
-                norawat2.setText(tabMode2.getValueAt(0,3).toString());
-                labeldokter2.setText(tabMode2.getValueAt(0,4).toString());
-                Sequel.queryu("update reg_periksa set stts='Sudah' where no_rawat='"+tabMode2.getValueAt(0,3).toString()+"'");
-                tampil2();
-        }else if(tabMode2.getRowCount()<=5){  
-                Sequel.queryu("update reg_periksa set stts='Belum',jam_reg=current_time() where no_rawat='"+norawat2.getText()+"'");
-                labelantri2.setText(tabMode2.getValueAt(0,0).toString());
-                labelpas2.setText(tabMode2.getValueAt(0,2).toString());                
-                norawat2.setText(tabMode2.getValueAt(0,3).toString());
-                labeldokter2.setText(tabMode2.getValueAt(0,4).toString());
-                Sequel.queryu("update reg_periksa set stts='Sudah' where no_rawat='"+tabMode2.getValueAt(0,3).toString()+"'");
-                tampil2();
-        }
+    if (tabMode2.getRowCount() >= 5) {
+        Sequel.queryu("update reg_periksa set stts='Belum',jam_reg='" + tabMode2.getValueAt(4, 5).toString() + "' where no_rawat='" + norawat2.getText() + "'");
+        labelantri2.setText(tabMode2.getValueAt(0, 0).toString());
+        labelpas2.setText(tabMode2.getValueAt(0, 2).toString());
+        norawat2.setText(tabMode2.getValueAt(0, 3).toString());
+        labeldokter2.setText(tabMode2.getValueAt(0, 4).toString());
+        Sequel.queryu("update reg_periksa set stts='Sudah' where no_rawat='" + tabMode2.getValueAt(0, 3).toString() + "'");
+        tampil2();
+    } else if (tabMode2.getRowCount() <= 5) {
+        Sequel.queryu("update reg_periksa set stts='Belum',jam_reg=current_time() where no_rawat='" + norawat2.getText() + "'");
+        labelantri2.setText(tabMode2.getValueAt(0, 0).toString());
+        labelpas2.setText(tabMode2.getValueAt(0, 2).toString());
+        norawat2.setText(tabMode2.getValueAt(0, 3).toString());
+        labeldokter2.setText(tabMode2.getValueAt(0, 4).toString());
+        Sequel.queryu("update reg_periksa set stts='Sudah' where no_rawat='" + tabMode2.getValueAt(0, 3).toString() + "'");
+        tampil2();
+    }
 }//GEN-LAST:event_ppUndo2ActionPerformed
 
 private void ppUndo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppUndo3ActionPerformed
-       if(tabMode3.getRowCount()>=5){                
-                Sequel.queryu("update reg_periksa set stts='Belum',jam_reg='"+tabMode3.getValueAt(4,5).toString()+"' where no_rawat='"+norawat3.getText()+"'");
-                labelantri3.setText(tabMode3.getValueAt(0,0).toString());
-                labelpas3.setText(tabMode3.getValueAt(0,2).toString());
-                norawat3.setText(tabMode3.getValueAt(0,3).toString());
-                labeldokter3.setText(tabMode3.getValueAt(0,4).toString());
-                Sequel.queryu("update reg_periksa set stts='Sudah' where no_rawat='"+tabMode3.getValueAt(0,3).toString()+"'");
-                tampil3();
-        }else if(tabMode3.getRowCount()<=5){  
-                Sequel.queryu("update reg_periksa set stts='Belum',jam_reg=current_time() where no_rawat='"+norawat3.getText()+"'");
-                labelantri3.setText(tabMode3.getValueAt(0,0).toString());
-                labelpas3.setText(tabMode3.getValueAt(0,2).toString());                
-                norawat3.setText(tabMode3.getValueAt(0,3).toString());
-                labeldokter3.setText(tabMode3.getValueAt(0,4).toString());
-                Sequel.queryu("update reg_periksa set stts='Sudah' where no_rawat='"+tabMode3.getValueAt(0,3).toString()+"'");
-                tampil3();
-        }
+    if (tabMode3.getRowCount() >= 5) {
+        Sequel.queryu("update reg_periksa set stts='Belum',jam_reg='" + tabMode3.getValueAt(4, 5).toString() + "' where no_rawat='" + norawat3.getText() + "'");
+        labelantri3.setText(tabMode3.getValueAt(0, 0).toString());
+        labelpas3.setText(tabMode3.getValueAt(0, 2).toString());
+        norawat3.setText(tabMode3.getValueAt(0, 3).toString());
+        labeldokter3.setText(tabMode3.getValueAt(0, 4).toString());
+        Sequel.queryu("update reg_periksa set stts='Sudah' where no_rawat='" + tabMode3.getValueAt(0, 3).toString() + "'");
+        tampil3();
+    } else if (tabMode3.getRowCount() <= 5) {
+        Sequel.queryu("update reg_periksa set stts='Belum',jam_reg=current_time() where no_rawat='" + norawat3.getText() + "'");
+        labelantri3.setText(tabMode3.getValueAt(0, 0).toString());
+        labelpas3.setText(tabMode3.getValueAt(0, 2).toString());
+        norawat3.setText(tabMode3.getValueAt(0, 3).toString());
+        labeldokter3.setText(tabMode3.getValueAt(0, 4).toString());
+        Sequel.queryu("update reg_periksa set stts='Sudah' where no_rawat='" + tabMode3.getValueAt(0, 3).toString() + "'");
+        tampil3();
+    }
 }//GEN-LAST:event_ppUndo3ActionPerformed
 
 private void BtnSeek5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSeek5ActionPerformed
-       pilihan=1;
-       dokter.emptTeks();
-        dokter.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-        dokter.setLocationRelativeTo(internalFrame1);
-        dokter.setAlwaysOnTop(false);
-        dokter.setVisible(true);
+    pilihan = 1;
+    dokter.emptTeks();
+    dokter.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
+    dokter.setLocationRelativeTo(internalFrame1);
+    dokter.setAlwaysOnTop(false);
+    dokter.setVisible(true);
 }//GEN-LAST:event_BtnSeek5ActionPerformed
 
 private void BtnSeek6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSeek6ActionPerformed
-      pilihan=2;
-       dokter.emptTeks();
-        dokter.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-        dokter.setLocationRelativeTo(internalFrame1);
-        dokter.setAlwaysOnTop(false);
-        dokter.setVisible(true);
+    pilihan = 2;
+    dokter.emptTeks();
+    dokter.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
+    dokter.setLocationRelativeTo(internalFrame1);
+    dokter.setAlwaysOnTop(false);
+    dokter.setVisible(true);
 }//GEN-LAST:event_BtnSeek6ActionPerformed
 
 private void BtnSeek7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSeek7ActionPerformed
-      pilihan=3;
-       dokter.emptTeks();
+    pilihan = 3;
+    dokter.emptTeks();
 
-        dokter.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-        dokter.setLocationRelativeTo(internalFrame1);
-        dokter.setAlwaysOnTop(false);
-        dokter.setVisible(true);
+    dokter.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
+    dokter.setLocationRelativeTo(internalFrame1);
+    dokter.setAlwaysOnTop(false);
+    dokter.setVisible(true);
 }//GEN-LAST:event_BtnSeek7ActionPerformed
 
 private void BtnBatal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatal1ActionPerformed
-      ppUndo1ActionPerformed(evt);
+    ppUndo1ActionPerformed(evt);
 }//GEN-LAST:event_BtnBatal1ActionPerformed
 
 private void BtnAntri1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAntri1ActionPerformed
-      ppAntri1ActionPerformed(evt);
+    ppAntri1ActionPerformed(evt);
 }//GEN-LAST:event_BtnAntri1ActionPerformed
 
 private void BtnAntri2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAntri2ActionPerformed
-      
-        ppAntri2ActionPerformed(evt);
+
+    ppAntri2ActionPerformed(evt);
 }//GEN-LAST:event_BtnAntri2ActionPerformed
 
 private void BtnBatal2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatal2ActionPerformed
-     ppUndo2ActionPerformed(evt);
+    ppUndo2ActionPerformed(evt);
 }//GEN-LAST:event_BtnBatal2ActionPerformed
 
 private void BtnAntri3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAntri3ActionPerformed
-     ppAntri3ActionPerformed(evt);
+    ppAntri3ActionPerformed(evt);
 }//GEN-LAST:event_BtnAntri3ActionPerformed
 
 private void BtnBatal3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatal3ActionPerformed
@@ -1193,74 +1199,98 @@ private void BtnBatal3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         poli.addWindowListener(new WindowListener() {
             @Override
-            public void windowOpened(WindowEvent e) {}
+            public void windowOpened(WindowEvent e) {
+            }
+
             @Override
-            public void windowClosing(WindowEvent e) {}
+            public void windowClosing(WindowEvent e) {
+            }
+
             @Override
             public void windowClosed(WindowEvent e) {
-                if(poli.getTable().getSelectedRow()!= -1){
-                    if(pilihan==1){
-                        Unit1.setText(poli.getTable().getValueAt(poli.getTable().getSelectedRow(),1).toString());
+                if (poli.getTable().getSelectedRow() != -1) {
+                    if (pilihan == 1) {
+                        Unit1.setText(poli.getTable().getValueAt(poli.getTable().getSelectedRow(), 1).toString());
                         tampil1();
                         Unit1.requestFocus();
-                    }else if(pilihan==2){
-                        Unit2.setText(poli.getTable().getValueAt(poli.getTable().getSelectedRow(),1).toString());
+                    } else if (pilihan == 2) {
+                        Unit2.setText(poli.getTable().getValueAt(poli.getTable().getSelectedRow(), 1).toString());
                         tampil2();
                         Unit2.requestFocus();
-                    }else if(pilihan==3){
-                        Unit3.setText(poli.getTable().getValueAt(poli.getTable().getSelectedRow(),1).toString());
+                    } else if (pilihan == 3) {
+                        Unit3.setText(poli.getTable().getValueAt(poli.getTable().getSelectedRow(), 1).toString());
                         tampil3();
                         Unit3.requestFocus();
-                    }  
-                }                
+                    }
+                }
             }
+
             @Override
-            public void windowIconified(WindowEvent e) {}
+            public void windowIconified(WindowEvent e) {
+            }
+
             @Override
-            public void windowDeiconified(WindowEvent e) {}
+            public void windowDeiconified(WindowEvent e) {
+            }
+
             @Override
-            public void windowActivated(WindowEvent e) {}
+            public void windowActivated(WindowEvent e) {
+            }
+
             @Override
-            public void windowDeactivated(WindowEvent e) {}
-        });        
-        
+            public void windowDeactivated(WindowEvent e) {
+            }
+        });
+
         dokter.addWindowListener(new WindowListener() {
             @Override
-            public void windowOpened(WindowEvent e) {}
+            public void windowOpened(WindowEvent e) {
+            }
+
             @Override
-            public void windowClosing(WindowEvent e) {}
+            public void windowClosing(WindowEvent e) {
+            }
+
             @Override
             public void windowClosed(WindowEvent e) {
-                if(dokter.getTable().getSelectedRow()!= -1){
-                    if(pilihan==1){                    
-                        Dokter1.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(),1).toString());
+                if (dokter.getTable().getSelectedRow() != -1) {
+                    if (pilihan == 1) {
+                        Dokter1.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
                         tampil1();
                         Dokter1.requestFocus();
-                    }else if(pilihan==2){
-                        Dokter2.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(),1).toString());
+                    } else if (pilihan == 2) {
+                        Dokter2.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
                         tampil2();
                         Dokter2.requestFocus();
-                    }else if(pilihan==3){
-                        Dokter3.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(),1).toString());
+                    } else if (pilihan == 3) {
+                        Dokter3.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
                         tampil3();
                         Dokter3.requestFocus();
                     }
-                }                
+                }
             }
+
             @Override
-            public void windowIconified(WindowEvent e) {}
+            public void windowIconified(WindowEvent e) {
+            }
+
             @Override
-            public void windowDeiconified(WindowEvent e) {}
+            public void windowDeiconified(WindowEvent e) {
+            }
+
             @Override
-            public void windowActivated(WindowEvent e) {}
+            public void windowActivated(WindowEvent e) {
+            }
+
             @Override
-            public void windowDeactivated(WindowEvent e) {}
+            public void windowDeactivated(WindowEvent e) {
+            }
         });
-        
+
     }//GEN-LAST:event_formWindowActivated
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        poli.removeWindowListener(null);        
+        poli.removeWindowListener(null);
         dokter.removeWindowListener(null);
         System.exit(0);
     }//GEN-LAST:event_formWindowClosed
@@ -1272,7 +1302,7 @@ private void BtnBatal3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     }//GEN-LAST:event_formWindowOpened
 
     private void BtnBatal4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatal4ActionPerformed
-        if(!labelantri1.getText().equals("")){
+        if (!labelantri1.getText().equals("")) {
             try {
                 BackgroundMusic bm = new BackgroundMusic("./suara/nomor-urut.mp3");
                 bm.start();
@@ -1280,13 +1310,13 @@ private void BtnBatal3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 bm.stop();
             } catch (InterruptedException ex) {
                 System.out.println(ex);
-            } 
+            }
             panggil(Integer.parseInt(labelantri1.getText()));
-        }            
+        }
     }//GEN-LAST:event_BtnBatal4ActionPerformed
 
     private void BtnBatal5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatal5ActionPerformed
-        if(!labelantri2.getText().equals("")){
+        if (!labelantri2.getText().equals("")) {
             try {
                 BackgroundMusic bm = new BackgroundMusic("./suara/nomor-urut.mp3");
                 bm.start();
@@ -1294,13 +1324,13 @@ private void BtnBatal3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 bm.stop();
             } catch (InterruptedException ex) {
                 System.out.println(ex);
-            } 
+            }
             panggil(Integer.parseInt(labelantri2.getText()));
         }
     }//GEN-LAST:event_BtnBatal5ActionPerformed
 
     private void BtnBatal6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatal6ActionPerformed
-        if(!labelantri3.getText().equals("")){
+        if (!labelantri3.getText().equals("")) {
             try {
                 BackgroundMusic bm = new BackgroundMusic("./suara/nomor-urut.mp3");
                 bm.start();
@@ -1308,16 +1338,14 @@ private void BtnBatal3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 bm.stop();
             } catch (InterruptedException ex) {
                 System.out.println(ex);
-            } 
+            }
             panggil(Integer.parseInt(labelantri3.getText()));
         }
     }//GEN-LAST:event_BtnBatal6ActionPerformed
 
-
-
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -1374,7 +1402,6 @@ private void BtnBatal3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private widget.InternalFrame form3;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame5;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1413,121 +1440,121 @@ private void BtnBatal3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private javax.swing.JMenuItem ppUndo2;
     private javax.swing.JMenuItem ppUndo3;
     // End of variables declaration//GEN-END:variables
-    
-    private void tampil1(){
+
+    private void tampil1() {
         Valid.tabelKosong(tabMode1);
-        try{     
-            ResultSet rs=koneksi.createStatement().executeQuery("select reg_periksa.no_reg,reg_periksa.no_rkm_medis, "+
-                   "pasien.nm_pasien,reg_periksa.no_rawat,dokter.nm_dokter,reg_periksa.jam_reg "+
-                   "from reg_periksa inner join dokter inner join pasien inner join poliklinik "+
-                   "on reg_periksa.kd_dokter=dokter.kd_dokter "+
-                   "and reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                   "and reg_periksa.kd_poli=poliklinik.kd_poli "+
-                   "where reg_periksa.tgl_registrasi=current_date() "+
-                   "and poliklinik.nm_poli='"+Unit1.getText()+"' "+
-                   "and dokter.nm_dokter='"+Dokter1.getText()+"' "+
-                   "and stts='Belum' "+
-                   "order by reg_periksa.jam_reg asc limit 10");
-            while(rs.next()){
-                String[] data={rs.getString(1),
-                               rs.getString(2),
-                               rs.getString(3),
-                               rs.getString(4),
-                               rs.getString(5),
-                               rs.getString(6)};
+        try {
+            ResultSet rs = koneksi.createStatement().executeQuery("select reg_periksa.no_reg,reg_periksa.no_rkm_medis, "
+                    + "pasien.nm_pasien,reg_periksa.no_rawat,dokter.nm_dokter,reg_periksa.jam_reg "
+                    + "from reg_periksa inner join dokter inner join pasien inner join poliklinik "
+                    + "on reg_periksa.kd_dokter=dokter.kd_dokter "
+                    + "and reg_periksa.no_rkm_medis=pasien.no_rkm_medis "
+                    + "and reg_periksa.kd_poli=poliklinik.kd_poli "
+                    + "where reg_periksa.tgl_registrasi=current_date() "
+                    + "and poliklinik.nm_poli='" + Unit1.getText() + "' "
+                    + "and dokter.nm_dokter='" + Dokter1.getText() + "' "
+                    + "and stts='Belum' "
+                    + "order by reg_periksa.jam_reg asc limit 10");
+            while (rs.next()) {
+                String[] data = {rs.getString(1),
+                    rs.getString(2),
+                    rs.getString(3),
+                    rs.getString(4),
+                    rs.getString(5),
+                    rs.getString(6)};
                 tabMode1.addRow(data);
             }
-        }catch(SQLException e){
-            System.out.println("Error : "+e);
+        } catch (SQLException e) {
+            System.out.println("Error : " + e);
         }
     }
-    
-    private void tampil2(){
+
+    private void tampil2() {
         Valid.tabelKosong(tabMode2);
-        try{     
-            ResultSet rs=koneksi.createStatement().executeQuery("select reg_periksa.no_reg,reg_periksa.no_rkm_medis, "+
-                   "pasien.nm_pasien,reg_periksa.no_rawat,dokter.nm_dokter,reg_periksa.jam_reg "+
-                   "from reg_periksa inner join dokter inner join pasien inner join poliklinik "+
-                   "on reg_periksa.kd_dokter=dokter.kd_dokter "+
-                   "and reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                   "and reg_periksa.kd_poli=poliklinik.kd_poli "+
-                   "where reg_periksa.tgl_registrasi=current_date() "+
-                   "and poliklinik.nm_poli='"+Unit2.getText()+"' "+
-                   "and dokter.nm_dokter='"+Dokter2.getText()+"' "+
-                   "and stts='Belum' "+
-                   "order by reg_periksa.jam_reg asc limit 10");
-            while(rs.next()){
-                String[] data={rs.getString(1),
-                               rs.getString(2),
-                               rs.getString(3),
-                               rs.getString(4),
-                               rs.getString(5),
-                               rs.getString(6)};
+        try {
+            ResultSet rs = koneksi.createStatement().executeQuery("select reg_periksa.no_reg,reg_periksa.no_rkm_medis, "
+                    + "pasien.nm_pasien,reg_periksa.no_rawat,dokter.nm_dokter,reg_periksa.jam_reg "
+                    + "from reg_periksa inner join dokter inner join pasien inner join poliklinik "
+                    + "on reg_periksa.kd_dokter=dokter.kd_dokter "
+                    + "and reg_periksa.no_rkm_medis=pasien.no_rkm_medis "
+                    + "and reg_periksa.kd_poli=poliklinik.kd_poli "
+                    + "where reg_periksa.tgl_registrasi=current_date() "
+                    + "and poliklinik.nm_poli='" + Unit2.getText() + "' "
+                    + "and dokter.nm_dokter='" + Dokter2.getText() + "' "
+                    + "and stts='Belum' "
+                    + "order by reg_periksa.jam_reg asc limit 10");
+            while (rs.next()) {
+                String[] data = {rs.getString(1),
+                    rs.getString(2),
+                    rs.getString(3),
+                    rs.getString(4),
+                    rs.getString(5),
+                    rs.getString(6)};
                 tabMode2.addRow(data);
             }
-        }catch(SQLException e){
-            System.out.println("Error : "+e);
+        } catch (SQLException e) {
+            System.out.println("Error : " + e);
         }
     }
-    
-    private void tampil3(){
+
+    private void tampil3() {
         Valid.tabelKosong(tabMode3);
-        try{
-            ResultSet rs=koneksi.createStatement().executeQuery("select reg_periksa.no_reg,reg_periksa.no_rkm_medis, "+
-                   "pasien.nm_pasien,reg_periksa.no_rawat,dokter.nm_dokter,reg_periksa.jam_reg "+
-                   "from reg_periksa inner join dokter inner join pasien inner join poliklinik "+
-                   "on reg_periksa.kd_dokter=dokter.kd_dokter "+
-                   "and reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                   "and reg_periksa.kd_poli=poliklinik.kd_poli "+
-                   "where reg_periksa.tgl_registrasi=current_date() "+
-                   "and poliklinik.nm_poli='"+Unit3.getText()+"' "+
-                   "and dokter.nm_dokter='"+Dokter3.getText()+"' "+
-                   "and stts='Belum' "+
-                   "order by reg_periksa.jam_reg asc limit 10");
-            while(rs.next()){
-                String[] data={rs.getString(1),
-                               rs.getString(2),
-                               rs.getString(3),
-                               rs.getString(4),
-                               rs.getString(5),
-                               rs.getString(6)};
+        try {
+            ResultSet rs = koneksi.createStatement().executeQuery("select reg_periksa.no_reg,reg_periksa.no_rkm_medis, "
+                    + "pasien.nm_pasien,reg_periksa.no_rawat,dokter.nm_dokter,reg_periksa.jam_reg "
+                    + "from reg_periksa inner join dokter inner join pasien inner join poliklinik "
+                    + "on reg_periksa.kd_dokter=dokter.kd_dokter "
+                    + "and reg_periksa.no_rkm_medis=pasien.no_rkm_medis "
+                    + "and reg_periksa.kd_poli=poliklinik.kd_poli "
+                    + "where reg_periksa.tgl_registrasi=current_date() "
+                    + "and poliklinik.nm_poli='" + Unit3.getText() + "' "
+                    + "and dokter.nm_dokter='" + Dokter3.getText() + "' "
+                    + "and stts='Belum' "
+                    + "order by reg_periksa.jam_reg asc limit 10");
+            while (rs.next()) {
+                String[] data = {rs.getString(1),
+                    rs.getString(2),
+                    rs.getString(3),
+                    rs.getString(4),
+                    rs.getString(5),
+                    rs.getString(6)};
                 tabMode3.addRow(data);
             }
-        }catch(SQLException e){
-            System.out.println("Error : "+e);
+        } catch (SQLException e) {
+            System.out.println("Error : " + e);
         }
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         paneliklan.repaint();
         String oldText = labelruntext.getText();
         String newText = oldText.substring(1) + oldText.substring(0, 1);
-        labelruntext.setText( newText );
+        labelruntext.setText(newText);
     }
-    
-    private  void isTampil(){
-        try{
-            ResultSet rs=koneksi.createStatement().executeQuery("select teks, aktifkan, gambar from runtext");
-            while(rs.next()){
+
+    private void isTampil() {
+        try {
+            ResultSet rs = koneksi.createStatement().executeQuery("select teks, aktifkan, gambar from runtext");
+            while (rs.next()) {
                 labelruntext.setText(rs.getString(1));
-                if(rs.getString(2).equals("Yes")){
+                if (rs.getString(2).equals("Yes")) {
                     Blob blob = rs.getBlob(3);
                     paneliklan.setBackgroundImage(new javax.swing.ImageIcon(blob.getBytes(1, (int) (blob.length()))));
-                    
+
                 }
             }
-        }catch(SQLException e){
-            System.out.println(e+"Error : Silahkan Set Aplikasi");
+        } catch (SQLException e) {
+            System.out.println(e + "Error : Silahkan Set Aplikasi");
         }
-    } 
-    
-    private void panggil(int antrian){
-        String[] urut={"","./suara/satu.mp3","./suara/dua.mp3","./suara/tiga.mp3","./suara/empat.mp3",
-                       "./suara/lima.mp3","./suara/enam.mp3","./suara/tujuh.mp3","./suara/delapan.mp3",
-                       "./suara/sembilan.mp3","./suara/sepuluh.mp3","./suara/sebelas.mp3"};
-        
-        if (antrian < 12){
+    }
+
+    private void panggil(int antrian) {
+        String[] urut = {"", "./suara/satu.mp3", "./suara/dua.mp3", "./suara/tiga.mp3", "./suara/empat.mp3",
+            "./suara/lima.mp3", "./suara/enam.mp3", "./suara/tujuh.mp3", "./suara/delapan.mp3",
+            "./suara/sembilan.mp3", "./suara/sepuluh.mp3", "./suara/sebelas.mp3"};
+
+        if (antrian < 12) {
             try {
                 BackgroundMusic bm = new BackgroundMusic(urut[antrian]);
                 bm.start();
@@ -1535,17 +1562,17 @@ private void BtnBatal3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 bm.stop();
             } catch (InterruptedException ex) {
                 System.out.println(ex);
-            }            
-        }else if (antrian < 20){
+            }
+        } else if (antrian < 20) {
             try {
-                BackgroundMusic bm = new BackgroundMusic(urut[antrian-10]);
+                BackgroundMusic bm = new BackgroundMusic(urut[antrian - 10]);
                 bm.start();
                 Thread.sleep(1500);
                 bm.stop();
             } catch (InterruptedException ex) {
                 System.out.println(ex);
             }
-            
+
             try {
                 BackgroundMusic bm = new BackgroundMusic("./suara/belas.mp3");
                 bm.start();
@@ -1554,16 +1581,16 @@ private void BtnBatal3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             } catch (InterruptedException ex) {
                 System.out.println(ex);
             }
-        }else if (antrian < 100){
+        } else if (antrian < 100) {
             try {
-                BackgroundMusic bm = new BackgroundMusic(urut[antrian/10]);
+                BackgroundMusic bm = new BackgroundMusic(urut[antrian / 10]);
                 bm.start();
                 Thread.sleep(1500);
                 bm.stop();
             } catch (InterruptedException ex) {
                 System.out.println(ex);
             }
-            
+
             try {
                 BackgroundMusic bm = new BackgroundMusic("./suara/puluh.mp3");
                 bm.start();
@@ -1572,9 +1599,9 @@ private void BtnBatal3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             } catch (InterruptedException ex) {
                 System.out.println(ex);
             }
-            
-            panggil(antrian%10);
-        }else if (antrian < 200){
+
+            panggil(antrian % 10);
+        } else if (antrian < 200) {
             try {
                 BackgroundMusic bm = new BackgroundMusic("./suara/seratus.mp3");
                 bm.start();
@@ -1583,11 +1610,11 @@ private void BtnBatal3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             } catch (InterruptedException ex) {
                 System.out.println(ex);
             }
-            
-            panggil(antrian-100);
-        }else if (antrian < 1000){
-            panggil(antrian/100);
-            
+
+            panggil(antrian - 100);
+        } else if (antrian < 1000) {
+            panggil(antrian / 100);
+
             try {
                 BackgroundMusic bm = new BackgroundMusic("./suara/ratus.mp3");
                 bm.start();
@@ -1596,8 +1623,8 @@ private void BtnBatal3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             } catch (InterruptedException ex) {
                 System.out.println(ex);
             }
-            
-            panggil(antrian%100);
+
+            panggil(antrian % 100);
         }
     }
 }

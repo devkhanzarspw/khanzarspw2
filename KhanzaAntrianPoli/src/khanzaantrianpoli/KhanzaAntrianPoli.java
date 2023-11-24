@@ -16,7 +16,7 @@ public class KhanzaAntrianPoli {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-          DlgAntrian antrian=new DlgAntrian(null,false);
+          DlgAntrian2 antrian=new DlgAntrian2(null,false);
           antrian.setVisible(true);
     }
     
